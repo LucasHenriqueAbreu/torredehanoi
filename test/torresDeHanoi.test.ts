@@ -1,7 +1,3 @@
-test.skip('Somente um disco pode ser movido de cada vez;', () => {
-
-});
-
 test.skip('Somente um disco pode ser movido de cada vez', () => {
 
 });
