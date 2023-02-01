@@ -11,3 +11,11 @@ Resumindo as regras:
 - Implemente um programa que resolva este problema.
 
 Qual o número mínimo de movimentos em que é possível resolver o problema de acordo com o número de pinos iniciais?
+
+
+## Para rodar
+
+### Instale as dependências 
+`npm i`
+### Rode os testes
+`npm test`
