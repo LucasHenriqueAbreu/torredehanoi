@@ -1,12 +1,12 @@
-import DiscoEnity from "./DiscoEnity";
-import TorreEntity from "./TorreEntity";
-import TorresEnum from "./TorresEnum";
+import DiscoEnity from './DiscoEnity';
+import TorreEntity from './TorreEntity';
+import TorresEnum from './TorresEnum';
 
 class JogoEntity {
   private _numeroDeDiscos: number;
-  private _torreUm: TorreEntity= new TorreEntity();
-  private _torreDois: TorreEntity= new TorreEntity();
-  private _torreTres: TorreEntity= new TorreEntity();
+  private _torreUm: TorreEntity= new TorreEntity(TorresEnum.TORRE_UM);
+  private _torreDois: TorreEntity= new TorreEntity(TorresEnum.TORRE_DOIS);
+  private _torreTres: TorreEntity= new TorreEntity(TorresEnum.TORRE_TRES);
   private _jogadas: number = 0;
   
   constructor(numeroDeDiscos: number) {
@@ -15,7 +15,7 @@ class JogoEntity {
   }
 
   private _init() {
-    for (let i = 0; i < this._numeroDeDiscos; i++) {
+    for (let i = this._numeroDeDiscos -1; i >= 0; i--) {
       this._torreUm.adicionarDisco(new DiscoEnity(i + 1));
     }
   }
@@ -31,6 +31,19 @@ class JogoEntity {
   get discosTorreTres(): DiscoEnity[] {
     return this._torreTres.discos;
   }
+
+  get torreUm(): TorreEntity {
+    return this._torreUm;
+  }
+  
+  get torreDois(): TorreEntity {
+    return this._torreDois;
+  }
+  
+  get torreTres(): TorreEntity {
+    return this._torreTres;
+  }
+  
 
   get jogadas():number {
     return this._jogadas;

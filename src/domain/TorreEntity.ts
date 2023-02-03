@@ -1,23 +1,33 @@
-import DiscoEnity from "./DiscoEnity";
+import DiscoEnity from './DiscoEnity';
+import TorresEnum from './TorresEnum';
 
 class TorreEntity {
+  private _nome: TorresEnum;
   private _discos: DiscoEnity[] = [];
+
+  constructor(nome: TorresEnum = TorresEnum.TORRE_UM) {
+    this._nome = nome;
+  }
+  
+  get nome(): TorresEnum {
+    return this._nome;
+  }
 
   get discos(): DiscoEnity[] {
     return [...this._discos]
   };
 
   get ultimoDisco(): DiscoEnity {
-    const disco = this._discos[this.discos.length - 1];
-    if (!disco) {
+    if (this._discos.length === 0) {
       throw new Error('Torre vazia');
     }
-    return disco;
+    return this._discos[this._discos.length - 1];
   }
 
   public adicionarDisco(disco: DiscoEnity): void {
-    if (disco.diametro < this._getDiametroUltimoDisco()) {
-      throw new Error('Disco com diâmetro menor que o antecessor');
+    const diametroUltimoDisco = this._getDiametroUltimoDisco();
+    if (diametroUltimoDisco !== 0 && disco.diametro >= diametroUltimoDisco) {
+      throw new Error('Disco com diâmetro maior que o antecessor');
     }
     this._discos.push(disco);
   }
